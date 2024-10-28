@@ -27,7 +27,18 @@ def count_unique_words(content):
 def longest_word(content):
     words = content.split()
     return max(words, key=len)
-    
+
+## def count_specific_word(content=None, specific_word= None, filename =  None):
+    if filename and not content:  
+        with open(filename, 'r') as file:
+            content = file.read()
+            
+    if content and specific_word:  
+        words = content.lower().split()
+        return words.count(specific_word.lower())
+    else:
+        return "Please provide specific_word."
+
 def percentage_longer_than_average(content):
     words = content.split()
     avg_length = average_word_length(content)
@@ -56,5 +67,3 @@ def analyze_text(filename):
     print(f"Percentage of words longer than average: {longer_avg_word:.2f}%")
     
 analyze_text('sample.txt')
-
-
